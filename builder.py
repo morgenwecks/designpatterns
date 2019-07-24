@@ -55,6 +55,18 @@ class SkyLarkBuilder(Builder):
         self.car.engine = "Turbo engine"
 
 
+class MosquitchBuilder(Builder):
+    # concrete builder - provides parts and tools to work on the parts
+
+    def add_model(self):
+        self.car.model = "Mosquitch"
+
+    def add_tires(self):
+        self.car.tires = "Old tires"
+
+    def add_engine(self):
+        self.car.engine = "Barely an engine"
+
 class Car():
     # product
     # after invoked, create empty slate attributes that are then combined by the abstract builder
@@ -73,4 +85,10 @@ director = Director(builder)
 director.construct_car()
 car = director.get_car()
 
+builder = MosquitchBuilder()
+director = Director(builder)
+director.construct_car()
+car2 = director.get_car()
+
 print(car)
+print(car2)
