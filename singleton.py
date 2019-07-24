@@ -13,7 +13,8 @@ class Borg:
     _shared_state = {}
 
     def __init__(self):
-        # Make it an attribute dictionary
+        # Initialize the instance, but take attributes from the state:
+        # Turn the shared state into an updated attribute dictionary of the class for all future instances
         self.__dict__ = self._shared_state
 
 
@@ -22,13 +23,13 @@ class Singleton(Borg): # inherits from the Borg class
     # Essentially makes the singleton objects an object-oriented variable
 
     def __init__(self, **kwargs):
+        # Call the init method, inheriting the existing shared state
         Borg.__init__(self)
         # Update the attribute dict by inserting a new kv-pair
         self._shared_state.update(kwargs)
 
     def __str__(self):
         # returns the attribute dict for printing
-
         return str(self._shared_state)
 
 
